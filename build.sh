@@ -25,7 +25,7 @@ parse_args "$@"
 docker build -f dockerfiles/Dockerfile.base -t nvm-node-base .
 
 docker buildx build -f dockerfiles/Dockerfile.node \
-  -t nvm-node:"$nodev" \
+  -t nvm-node:nodev"$nodev"-npmv"$npmv" \
   --build-arg NODE_VERSION="$nodev" \
   --build-arg NPM_VERSION="$npmv" \
   .
