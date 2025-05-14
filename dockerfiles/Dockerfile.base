@@ -1,0 +1,13 @@
+FROM debian:bookworm-slim
+
+ENV NVM_DIR=/root/.nvm
+ENV PROFILE=/root/.bashrc
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl ca-certificates bash git build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+ENV PATH="$NVM_DIR/versions/node/default/bin:$PATH"
+SHELL ["/bin/bash", "-c"]
