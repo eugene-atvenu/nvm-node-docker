@@ -3,6 +3,7 @@ FROM nvm-node-base:latest
 
 ARG NODE_VERSION
 ARG NPM_VERSION
+ARG INSTALL_PM2=false
 
 ENV NVM_DIR=/root/.nvm
 
@@ -11,9 +12,11 @@ RUN bash -c "source $NVM_DIR/nvm.sh && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
     nvm use default && \
-    npm install -g npm@$NPM_VERSION"
+    npm install -g npm@$NPM_VERSION && \
+    if [ $INSTALL_PM2=true ]; then \
+      npm install -g pm2@latest; \
+    fi"
 
-# Set runtime PATH
 ENV PATH="$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH"
 
 SHELL ["/bin/bash", "-c"]
