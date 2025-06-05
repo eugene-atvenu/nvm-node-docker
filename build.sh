@@ -26,7 +26,7 @@ parse_args "$@"
 
 docker build -f dockerfiles/Dockerfile.base -t nvm-node-base .
 
-ispm=$([ "$pm2" = "true" ] && echo "pm2-")
+ispm=$([ "$pm2" = "true" ] && echo "pm2" || echo "build")
 
 docker buildx build -f dockerfiles/Dockerfile.node \
   -t nvm-node:"$ispm-node_$nodev"-npm_"$npmv" \
