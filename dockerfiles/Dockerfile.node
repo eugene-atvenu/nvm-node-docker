@@ -1,5 +1,5 @@
 # dockerfiles/Dockerfile.node
-FROM nvm-node-base:latest
+FROM node-nvm-base:latest
 
 ARG NODE_VERSION
 ARG NPM_VERSION

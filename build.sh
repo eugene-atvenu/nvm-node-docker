@@ -24,7 +24,7 @@ parse_args() {
 
 parse_args "$@"
 
-docker build -f dockerfiles/Dockerfile.base -t nvm-node-base .
+docker build -f dockerfiles/Dockerfile.nvm-base -t node-nvm-base .
 
 ispm=$([ "$pm2" = "true" ] && echo "pm2" || echo "build")
 
