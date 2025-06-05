@@ -1,7 +1,9 @@
 FROM debian:bookworm-slim
 
-RUN export NVM_DIR="$HOME/.nvm"
-RUN export PROFILE="$HOME/.bashrc"
+ENV NVM_DIR=/usr/local/.nvm
+ENV PROFILE=/root/.bashrc
+
+RUN mkdir $NVM_DIR
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl git ca-certificates \

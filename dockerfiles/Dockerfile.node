@@ -5,7 +5,7 @@ ARG NODE_VERSION
 ARG NPM_VERSION
 ARG INSTALL_PM2=false
 
-RUN export NVM_DIR="$HOME/.nvm"
+ENV NVM_DIR=/usr/local/.nvm
 
 # Install Node and NPM
 RUN source $NVM_DIR/nvm.sh && \
