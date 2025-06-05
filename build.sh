@@ -24,12 +24,13 @@ parse_args() {
 
 parse_args "$@"
 
-docker build -f dockerfiles/Dockerfile.nvm-base -t node-nvm-base .
+docker build -f dockerfiles/Dockerfile.nvm-base -t node-nvm-base --platform linux/amd64 .
 
 ispm=$([ "$pm2" = "true" ] && echo "pm2" || echo "build")
 
 docker buildx build -f dockerfiles/Dockerfile.node \
-  -t node-nvm:"$ispm-node_$nodev"-npm_"$npmv" \
+  --platform linux/amd64 \
+  -t atvenu/node-nvm:"$ispm-node_$nodev"-npm_"$npmv" \
   --build-arg NODE_VERSION="$nodev" \
   --build-arg NPM_VERSION="$npmv" \
   --build-arg INSTALL_PM2="$pm2" \
